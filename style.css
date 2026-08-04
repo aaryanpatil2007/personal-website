@@ -1,0 +1,239 @@
+/* ---------- Fonts (self-hosted — no network fetch, no swap flash) ---------- */
+@font-face {
+  font-family: "Caveat";
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url(fonts/caveat-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Caveat";
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url(fonts/caveat-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ---------- Base ---------- */
+:root {
+  --bg: #f4f1ea;        /* eggshell white */
+  --text: #1a1a1a;      /* near-black */
+  --muted: #6b6b6b;     /* secondary text */
+  --line: #e2ddd1;      /* subtle dividers */
+  --accent: #c9a227;    /* gold accent */
+  --link: #1a1a1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Interactive background canvas (sits behind everything) */
+#bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  /* reserve scrollbar space so short/long pages don't shift sideways */
+  scrollbar-gutter: stable;
+}
+
+/* smooth crossfade between pages (Chrome; ignored elsewhere) */
+@view-transition {
+  navigation: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 56px 24px 96px;
+}
+
+/* ---------- Nav ---------- */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 64px;
+}
+
+nav .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--text);
+}
+
+/* ---------- "Aaryan Patil" wordmark ---------- */
+nav .brand:hover {
+  color: var(--text);
+}
+
+.brand-name {
+  font-family: "Caveat", "Bradley Hand", "Marker Felt", cursive;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.brand-name .gold {
+  color: var(--text);
+  font-size: 1.3em;
+}
+
+nav .links {
+  display: flex;
+  gap: 20px;
+}
+
+nav .links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-family: "Caveat", "Bradley Hand", "Marker Felt", cursive;
+  font-size: 22px;
+  line-height: 1;
+}
+
+nav .links a:hover {
+  color: var(--text);
+}
+
+nav .links a.active {
+  color: var(--text);
+}
+
+/* ---------- Typography ---------- */
+h1 {
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  margin: 0 0 20px;
+}
+
+h2 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 56px 0 16px;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 16px;
+}
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+.lead {
+  color: var(--muted);
+}
+
+/* ---------- Lists ---------- */
+ul.bare {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.bare li {
+  margin: 0 0 14px;
+}
+
+.entry-title {
+  font-weight: 600;
+}
+
+.entry-meta {
+  color: var(--muted);
+}
+
+.note {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* ---------- Reader list (dated + linked) ---------- */
+ul.reading {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.reading li {
+  display: flex;
+  gap: 16px;
+  margin: 0 0 12px;
+  align-items: baseline;
+}
+
+ul.reading .date {
+  flex: none;
+  width: 78px;
+  color: var(--muted);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+ul.reading .entry-title a {
+  text-decoration: none;
+}
+
+ul.reading .entry-title a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 80px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 520px) {
+  .wrap {
+    padding: 40px 20px 72px;
+  }
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+}
