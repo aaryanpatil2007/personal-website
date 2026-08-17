@@ -1,6 +1,5 @@
-/* Contact page centerpiece: a spinning 3D icosahedron of golden dots.
-   12 dots fly in from scattered points around the screen, assemble into
-   the shape, then spin forever. The background itself stays blank. */
+/* Contact page centerpiece: a golden 3D icosahedron spinning in the
+   middle of the screen, on an otherwise blank background. */
 (function () {
   var canvas = document.getElementById("bg");
   if (!canvas) return;
@@ -11,11 +10,6 @@
 
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
   var W = 0, H = 0, cx = 0, cy = 0, R = 0;
-  var homes = []; // scatter start position for each vertex
-
-  // assemble once over A_END ms, then spin forever
-  var A_END = 2800;
-  var startTime = 0;
 
   // --- icosahedron geometry ---
   var t = (1 + Math.sqrt(5)) / 2;
@@ -58,12 +52,8 @@
     canvas.style.height = H + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     cx = W / 2;
-    cy = H * 0.76;
+    cy = H / 2;
     R = Math.min(W, H) * 0.14;
-
-    homes = [];
-    for (var k = 0; k < V.length; k++)
-      homes.push({ x: Math.random() * W, y: Math.random() * H });
   }
 
   // static gold scanline + dither tile — retro arcade fill for the faces
@@ -97,37 +87,15 @@
   }
   function vpos(k, time) { return project(rot3(k, time)); }
 
-  function smooth(x) {
-    x = x < 0 ? 0 : x > 1 ? 1 : x;
-    return x * x * (3 - 2 * x);
-  }
-
   function draw(time) {
-    if (!startTime) startTime = time;
-    var el = time - startTime;
     ctx.clearRect(0, 0, W, H);
 
-    var assembling = el < A_END;
-    var a = smooth(el / A_END);
-    var edgeA = a; // fades to 1 as it assembles, then stays 1
-
-    // compute each vertex's drawn position
+    // vertex screen positions
     var sp = [];
-    for (var k = 0; k < V.length; k++) {
-      var home = homes[k];
-      var proj = vpos(k, time);
-      var x, y;
-      if (assembling) {
-        x = home.x + (proj.x - home.x) * a;
-        y = home.y + (proj.y - home.y) * a;
-      } else {
-        x = proj.x; y = proj.y;
-      }
-      sp[k] = { x: x, y: y, depth: proj.depth };
-    }
+    for (var k = 0; k < V.length; k++) sp[k] = vpos(k, time);
 
     // --- lightly filled faces (back-face culled, depth-sorted) ---
-    if (edgeA > 0.01) {
+    {
       var r3 = [];
       for (var k = 0; k < V.length; k++) r3[k] = rot3(k, time);
 
@@ -148,7 +116,7 @@
       vis.sort(function (p, q) { return p.z - q.z; }); // back to front
 
       ctx.fillStyle = pattern;
-      ctx.globalAlpha = edgeA * 0.6; // uniform fill — no per-face highlighting
+      ctx.globalAlpha = 0.6; // uniform fill — no per-face highlighting
       for (var vI = 0; vI < vis.length; vI++) {
         var fc = vis[vI];
         var p0 = sp[fc.f[0]], p1 = sp[fc.f[1]], p2 = sp[fc.f[2]];
@@ -163,13 +131,13 @@
     }
 
     // --- shape edges ---
-    if (edgeA > 0.01) {
+    {
       ctx.lineWidth = 1;
       for (var e = 0; e < edges.length; e++) {
         var p = sp[edges[e][0]], q = sp[edges[e][1]];
         var dd = (p.depth + q.depth) / 2;
         ctx.strokeStyle = "rgba(" + GOLD[0] + "," + GOLD[1] + "," + GOLD[2] + "," +
-          edgeA * (0.12 + dd * 0.5) + ")";
+          (0.12 + dd * 0.5) + ")";
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(q.x, q.y);
