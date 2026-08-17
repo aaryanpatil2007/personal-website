@@ -54,19 +54,8 @@ body {
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 64px;
-}
-
-nav .brand {
-  text-decoration: none;
-  color: var(--text);
-}
-
-.brand-name {
-  font-size: 19px;
-  font-weight: 700;
-  line-height: 1;
 }
 
 nav .links {
@@ -197,9 +186,6 @@ footer {
     padding: 40px 20px 72px;
   }
   nav {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
     margin-bottom: 48px;
   }
 }
