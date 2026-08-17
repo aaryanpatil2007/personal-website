@@ -52,7 +52,7 @@
     canvas.style.height = H + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     cx = W / 2;
-    cy = H / 2;
+    cy = H * 0.72;
     R = Math.min(W, H) * 0.14;
   }
 
