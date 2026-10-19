@@ -1,26 +1,14 @@
-/* ---------- Base ---------- */
+/* Plain academic page: white background, Georgia serif, classic blue links,
+   compact spacing — in the spirit of incompleteideas.net. */
 :root {
-  --bg: #f4f1ea;        /* eggshell white */
-  --text: #1a1a1a;      /* near-black */
-  --muted: #6b6b6b;     /* secondary text */
-  --line: #e2ddd1;      /* subtle dividers */
-  --accent: #c9a227;    /* gold accent */
-  --link: #1a1a1a;
-  --serif: "Times New Roman", Times, "Liberation Serif", Georgia, serif;
+  --text: #000000;
+  --muted: #555555;
+  --link: #0000ee;    /* classic browser-default blue */
+  --visited: #551a8b; /* classic visited purple */
 }
 
 * {
   box-sizing: border-box;
-}
-
-/* Contact page centerpiece canvas (sits behind everything) */
-#bg {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
 }
 
 html {
@@ -36,81 +24,67 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: #ffffff;
   color: var(--text);
-  font-family: var(--serif);
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 17px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
+  line-height: 1.45;
 }
 
 .wrap {
   max-width: 640px;
   margin: 0 auto;
-  padding: 56px 24px 96px;
+  padding: 32px 24px 64px;
 }
 
 /* ---------- Nav ---------- */
 nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 64px;
+  margin-bottom: 32px;
 }
 
 nav .links {
   display: flex;
-  gap: 20px;
+  gap: 18px;
 }
 
 nav .links a {
-  color: var(--muted);
-  text-decoration: none;
   font-size: 16px;
-  line-height: 1;
-}
-
-nav .links a:hover {
-  color: var(--text);
 }
 
 nav .links a.active {
   color: var(--text);
+  text-decoration: none;
 }
 
 /* ---------- Typography ---------- */
 h1 {
-  font-size: 27px;
+  font-size: 24px;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  margin: 0 0 20px;
+  margin: 0 0 12px;
 }
 
 h2 {
-  font-size: 15px;
-  text-transform: lowercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  margin: 56px 0 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 26px 0 8px;
 }
 
 p {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
 }
 
 a {
   color: var(--link);
   text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
-a:hover {
-  color: var(--accent);
+a:visited {
+  color: var(--visited);
 }
 
-.lead {
+.note {
   color: var(--muted);
+  font-size: 15px;
 }
 
 /* ---------- Lists ---------- */
@@ -121,20 +95,15 @@ ul.bare {
 }
 
 ul.bare li {
-  margin: 0 0 14px;
+  margin: 0 0 8px;
 }
 
 .entry-title {
-  font-weight: 600;
+  font-weight: normal;
 }
 
 .entry-meta {
   color: var(--muted);
-}
-
-.note {
-  color: var(--muted);
-  font-size: 15px;
 }
 
 /* ---------- Reader list (dated + linked) ---------- */
@@ -146,33 +115,24 @@ ul.reading {
 
 ul.reading li {
   display: flex;
-  gap: 16px;
-  margin: 0 0 12px;
+  gap: 14px;
+  margin: 0 0 6px;
   align-items: baseline;
 }
 
 ul.reading .date {
   flex: none;
-  width: 78px;
+  width: 72px;
   color: var(--muted);
   font-size: 14px;
   font-variant-numeric: tabular-nums;
 }
 
-ul.reading .entry-title a {
-  text-decoration: none;
-}
-
-ul.reading .entry-title a:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
 /* ---------- Footer ---------- */
 footer {
-  margin-top: 80px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
+  margin-top: 48px;
+  padding-top: 14px;
+  border-top: 1px solid #cccccc;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -183,9 +143,9 @@ footer {
 /* ---------- Responsive ---------- */
 @media (max-width: 520px) {
   .wrap {
-    padding: 40px 20px 72px;
+    padding: 24px 18px 48px;
   }
   nav {
-    margin-bottom: 48px;
+    margin-bottom: 24px;
   }
 }
