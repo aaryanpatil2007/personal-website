@@ -1,6 +1,6 @@
 # Personal Website
 
-A minimalist static personal site — eggshell-white, three pages: Home, Readings, Contact.
+A minimalist static personal site. Plain white, three pages: Home, Readings, Contact.
 Plain HTML + CSS, no build step, no dependencies.
 
 ```
@@ -17,7 +17,7 @@ Open the `.html` files in any text editor. Replace every `[BRACKETED]` placehold
 - On `readings.html`, copy a `<li>…</li>` block for each new book/article.
 - On `contact.html`, set the `href="#"` links to your real profile URLs.
 
-Colors live at the top of `style.css` under `:root` (e.g. `--accent` for the small square).
+Colors live at the top of `style.css` under `:root`.
 
 ## Preview locally
 
@@ -37,7 +37,7 @@ All of these host static files for free and let you attach a custom domain you b
 1. Make an account.
 2. Create a new project and drag this folder into the upload area (or connect a GitHub repo
    containing these files).
-3. No build command needed — it's static. Set the output/publish directory to this folder.
+3. No build command needed; it's static. Set the output/publish directory to this folder.
 4. In the project's **Domains** settings, add your purchased domain and follow the DNS
    instructions (update the nameservers or add the CNAME/A records they show you).
 
@@ -48,4 +48,4 @@ All of these host static files for free and let you attach a custom domain you b
    DNS at GitHub's servers per their instructions.
 
 Tip: rename the folder to something without a space (e.g. `personal-website`) before pushing
-to git — it avoids quoting issues.
+to git; it avoids quoting issues.
