@@ -1,4 +1,4 @@
-/* Contact page centerpiece: a golden wireframe constellation that constantly
+/* Contact page centerpiece: a black wireframe constellation that constantly
    morphs between shapes (tetrahedron, cube, octahedron, icosahedron,
    dodecahedron, sphere spiral, trefoil knot) on an otherwise blank page. */
 (function () {
@@ -6,7 +6,7 @@
   if (!canvas) return;
   var ctx = canvas.getContext("2d");
 
-  var GOLD = [240, 196, 78];
+  var INK = [0, 0, 0];
   var N = 300;          // particles shared by every shape
   var MORPH = 700;      // ms spent morphing to the next shape
   var HOLD = 800;       // ms spent resting as a shape
@@ -182,7 +182,7 @@
         for (var s = 1; s < chain.length; s++) {
           var p = sp[chain[s - 1]], q = sp[chain[s]];
           var dd = (p.depth + q.depth) / 2;
-          ctx.strokeStyle = "rgba(" + GOLD[0] + "," + GOLD[1] + "," + GOLD[2] +
+          ctx.strokeStyle = "rgba(" + INK[0] + "," + INK[1] + "," + INK[2] +
             "," + ((0.1 + dd * 0.45) * fade) + ")";
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
@@ -195,7 +195,7 @@
     // particles
     for (var i = 0; i < N; i++) {
       var p = sp[i];
-      ctx.fillStyle = "rgba(" + GOLD[0] + "," + GOLD[1] + "," + GOLD[2] + "," +
+      ctx.fillStyle = "rgba(" + INK[0] + "," + INK[1] + "," + INK[2] + "," +
         (0.35 + p.depth * 0.55) + ")";
       ctx.beginPath();
       ctx.arc(p.x, p.y, 0.8 + p.depth * 1.6 + settle * 0.4, 0, Math.PI * 2);
