@@ -5,7 +5,7 @@ Plain HTML + CSS, no build step, no dependencies.
 
 ```
 index.html      Home
-readings.html   Readings (list of books/articles)
+media.html      Media (list of books/papers/videos)
 contact.html    Contact
 style.css       shared styles
 ```
@@ -14,7 +14,7 @@ style.css       shared styles
 
 Open the `.html` files in any text editor. Replace every `[BRACKETED]` placeholder:
 - `[YOUR NAME]`, `[Short bio …]`, `[YEAR]` etc.
-- On `readings.html`, copy a `<li>…</li>` block for each new book/article.
+- On `media.html`, copy a `<li>…</li>` block for each new book/article.
 - On `contact.html`, set the `href="#"` links to your real profile URLs.
 
 Colors live at the top of `style.css` under `:root`.
